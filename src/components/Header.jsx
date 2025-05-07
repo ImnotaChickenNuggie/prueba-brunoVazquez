@@ -17,7 +17,7 @@ const Header = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         <Link to="/" className="nav-link" style={{ fontSize: '1.3rem' }}>Inicio</Link>
-                        <Link to="/cart" className="nav-link" style={{ fontSize: '1.3rem' }}>Mi Carrito <i class="bi bi-cart-fill"></i></Link>
+                        <Link to="/cart" className="nav-link" style={{ fontSize: '1.3rem' }}>Mi Carrito <i className="bi bi-cart-fill"></i></Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

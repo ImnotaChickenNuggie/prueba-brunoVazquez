@@ -33,7 +33,7 @@ const ProductCard = ({ id, image, title, category, price }) => {
                 <Card.Text className="text-primary fw-bold">${price}</Card.Text>
                 {quantity >= 5 ? (
                     <Alert variant="warning" className="py-1 mb-2">
-                        Limitado a 5 unidades <i class="bi bi-exclamation-triangle"></i>
+                        Limitado a 5 unidades <i className="bi bi-exclamation-triangle"></i>
                     </Alert>
                 ) : null}
                 <Button 

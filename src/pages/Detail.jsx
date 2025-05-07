@@ -3,7 +3,9 @@ import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductById } from '../redux/slices/productsSlice';
 import { addToCart } from '../redux/slices/cartSlice';
-import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Button, Alert, Placeholder } from 'react-bootstrap';
+import HomeError from '../components/HomeError';
+import WithoutStock from '../components/WithoutStock';
 
 const Detail = () => {
   const { id } = useParams();
@@ -26,24 +28,67 @@ const Detail = () => {
   };
 
   if (status === 'loading') {
-    return <div className="container mt-5 text-center">Cargando información...</div>;
+    return (
+      <Container className="mt-5">
+        <Row>
+          <Col md={6}>
+            <Placeholder as="div" animation="glow" className="w-100">
+              <div style={{
+                height: '400px',
+                backgroundColor: '#e9ecef',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Placeholder xs={12} style={{ height: '100%' }} />
+              </div>
+            </Placeholder>
+          </Col>
+          <Col md={6}>
+            <Placeholder as="h1" animation="glow" className="mb-4">
+              <Placeholder xs={8} />
+            </Placeholder>
+            <Placeholder as="p" animation="glow" className="mb-3">
+              <Placeholder xs={4} />
+            </Placeholder>
+            <div className="mb-4">
+              <Placeholder as="span" animation="glow" className="me-2">
+                <Placeholder xs={3} />
+              </Placeholder>
+              <Placeholder as="span" animation="glow">
+                <Placeholder xs={3} />
+              </Placeholder>
+            </div>
+            <Placeholder as="h2" animation="glow" className="mb-4">
+              <Placeholder xs={3} />
+            </Placeholder>
+            <Placeholder as="p" animation="glow" className="mb-4">
+              <Placeholder xs={12} />
+              <Placeholder xs={12} />
+              <Placeholder xs={8} />
+            </Placeholder>
+            <Placeholder.Button xs={4} animation="glow" />
+          </Col>
+        </Row>
+      </Container>
+    );
   }
 
   if (status === 'failed') {
-    return <div className="container mt-5 text-center text-danger">Error: {error}</div>;
+    return <><HomeError /></>;
   }
 
   if (!selectedProduct) {
-    return <div className="container mt-5 text-center">Producto no encontrado</div>;
+    return <><WithoutStock /></>;
   }
 
   return (
     <Container className="mt-5">
       <Row>
         <Col md={6}>
-          <img 
-            src={selectedProduct.image} 
-            alt={selectedProduct.title} 
+          <img
+            src={selectedProduct.image}
+            alt={selectedProduct.title}
             className="img-fluid"
             style={{ maxHeight: '400px', objectFit: 'contain' }}
           />
@@ -62,8 +107,8 @@ const Detail = () => {
               Máximo 5 unidades por producto
             </Alert>
           ) : null}
-          <Button 
-            variant="primary" 
+          <Button
+            variant="primary"
             onClick={handleAddToCart}
             disabled={quantity >= 5}
           >
