@@ -18,22 +18,22 @@ const Home = () => {
 
   return (
     <Container className="py-4">
-      <h2 className="mb-4">Productos</h2>
+      <h1 className="mb-4">Nuestros Productos</h1>
       {status === 'loading' && <p>Cargando...</p>}
       {status === 'failed' && <p>Error: {error}</p>}
-      
+
       <CategoryFilter />
-      
+
       <Row xs={1} md={2} lg={3} xl={4} className="g-4">
         {filteredProducts && filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <Col key={product.id}>
-              <ProductCard 
-                id={product.id} 
-                image={product.image} 
-                title={product.title} 
-                category={product.category} 
-                price={product.price} 
+              <ProductCard
+                id={product.id}
+                image={product.image}
+                title={product.title}
+                category={product.category}
+                price={product.price}
               />
             </Col>
           ))

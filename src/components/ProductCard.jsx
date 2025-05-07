@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/slices/cartSlice';
 import { Card, Button, Alert } from 'react-bootstrap';
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const ProductCard = ({ id, image, title, category, price }) => {
     const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const ProductCard = ({ id, image, title, category, price }) => {
                 <Card.Text className="text-primary fw-bold">${price}</Card.Text>
                 {quantity >= 5 ? (
                     <Alert variant="warning" className="py-1 mb-2">
-                        Máximo 5 unidades
+                        Limitado a 5 unidades <i class="bi bi-exclamation-triangle"></i>
                     </Alert>
                 ) : null}
                 <Button 

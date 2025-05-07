@@ -24,7 +24,7 @@ const Cart = () => {
 
   return (
     <Container className="py-4">
-      <h2 className="mb-4">Carrito de Compras</h2>
+      <h2 className="mb-4">Artículos en tu carrito:</h2>
       <Row>
         <Col md={8}>
           {cartItems.map((item) => (
