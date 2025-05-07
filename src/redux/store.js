@@ -5,9 +5,9 @@ import productsReducer from './slices/productsSlice';
 import cartReducer from './slices/cartSlice';
 
 const persistConfig = {
-  key: 'root',
+  key: 'cart',
   storage,
-  whitelist: ['cart'],
+  whitelist: ['items'],
 };
 
 const rootReducer = combineReducers({
