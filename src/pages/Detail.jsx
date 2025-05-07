@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, Link } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductById } from '../redux/slices/productsSlice';
 import { addToCart } from '../redux/slices/cartSlice';
-import { Container, Row, Col, Button, Alert, Placeholder } from 'react-bootstrap';
+import { Container, Row, Col, Button, Alert, Placeholder, Breadcrumb } from 'react-bootstrap';
 import HomeError from '../components/HomeError';
 import WithoutStock from '../components/WithoutStock';
 
@@ -31,6 +31,10 @@ const Detail = () => {
   if (status === 'loading') {
     return (
       <Container className="mt-5">
+        <Breadcrumb className="mb-4">
+          <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Inicio</Breadcrumb.Item>
+          <Breadcrumb.Item active>Cargando producto...</Breadcrumb.Item>
+        </Breadcrumb>
         <Row>
           <Col md={6}>
             <Placeholder as="div" animation="glow" className="w-100">
@@ -85,6 +89,10 @@ const Detail = () => {
 
   return (
     <Container className="mt-5">
+      <Breadcrumb className="mb-4">
+        <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Inicio</Breadcrumb.Item>
+        <Breadcrumb.Item active>{selectedProduct.title}</Breadcrumb.Item>
+      </Breadcrumb>
       <Row>
         <Col md={6}>
           <img
