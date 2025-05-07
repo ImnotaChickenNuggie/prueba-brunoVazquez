@@ -60,3 +60,6 @@ Para ejecutar el proyecto
 • Carrito de compras (Con persistencia en LocalStorage)
 ![Alt Text](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW1ybmhpN3lhcDJrbXZvdjAxcG93dWVrdHJrd3JyZDk3bjVudXRwYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fRtt9WVroth99jWe4j/giphy.gif)
 
+• Ventana de error que se muestra cuando ocurre algún error con la carga
+![Alt Text](https://prueba-bruno-vazquez.vercel.app/error.png)
+
