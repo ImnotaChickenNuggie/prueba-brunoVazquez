@@ -21,7 +21,7 @@ const initialState = {
   items: [],
   selectedProduct: null,
   selectedCategory: 'all',
-  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: 'idle',
   error: null,
 };
 

@@ -1,7 +1,9 @@
 import React from 'react'
 import Error from '/error.webp'
 
+// Este componente se muestra cuando hay un error en la carga de la página
 const HomeError = () => {
+    // Función para recargar la página nuevamente si falla
     const handleReload = () => {
         window.location.reload(true);
     };

@@ -10,7 +10,7 @@ import WithoutStock from '../components/WithoutStock';
 const Detail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { selectedProduct, status, error } = useSelector((state) => state.products);
+  const { selectedProduct, status } = useSelector((state) => state.products);
   const cartItems = useSelector(state => state.cart.items);
   const currentItem = cartItems.find(item => item.id === Number(id));
   const quantity = currentItem ? currentItem.quantity : 0;
@@ -27,6 +27,7 @@ const Detail = () => {
     }
   };
 
+  // Este es un loader en forma de skeleton para mostrar mientras se carga el producto
   if (status === 'loading') {
     return (
       <Container className="mt-5">

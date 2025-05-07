@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-catch */
 import axios from 'axios';
 
+// Se hace la llamada a la API de productos y después se exportan las funciones correspondientes
 const products = axios.create({
 	baseURL: 'https://fakestoreapi.com',
 	headers: {

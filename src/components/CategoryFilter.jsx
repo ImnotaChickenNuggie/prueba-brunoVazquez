@@ -5,7 +5,8 @@ const CategoryFilter = () => {
   const dispatch = useDispatch();
   const { items, selectedCategory } = useSelector((state) => state.products);
   const categories = [...new Set(items.map(product => product.category))];
-
+  
+  //Cambia la categoría seleccionada 
   const handleCategoryClick = (category) => {
     dispatch({ type: 'products/setSelectedCategory', payload: category });
   };

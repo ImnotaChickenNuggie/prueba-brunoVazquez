@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import productsReducer from './slices/productsSlice';
 import cartReducer from './slices/cartSlice';
 
+// Se configura la persistencia del estado para el carrito
 const persistConfig = {
   key: 'cart',
   storage,

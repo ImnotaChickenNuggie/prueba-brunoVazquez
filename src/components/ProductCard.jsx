@@ -10,7 +10,7 @@ const ProductCard = ({ id, image, title, category, price }) => {
     const cartItems = useSelector(state => state.cart.items);
     const currentItem = cartItems.find(item => item.id === id);
     const quantity = currentItem ? currentItem.quantity : 0;
-
+    // Funcion para agregar productos al carrito hasta un máximo de 5
     const handleAddToCart = () => {
         if (quantity < 5) {
             dispatch(addToCart({ id, image, title, category, price }));
@@ -20,9 +20,9 @@ const ProductCard = ({ id, image, title, category, price }) => {
     return (
         <Card className="h-100">
             <Link to={`/product-detail/${id}`} className="text-decoration-none">
-                <Card.Img 
-                    variant="top" 
-                    src={image} 
+                <Card.Img
+                    variant="top"
+                    src={image}
                     alt={title}
                     style={{ height: '200px', objectFit: 'contain', padding: '1rem' }}
                 />
@@ -36,8 +36,8 @@ const ProductCard = ({ id, image, title, category, price }) => {
                         Limitado a 5 unidades <i className="bi bi-exclamation-triangle"></i>
                     </Alert>
                 ) : null}
-                <Button 
-                    variant="primary" 
+                <Button
+                    variant="primary"
                     onClick={handleAddToCart}
                     disabled={quantity >= 5}
                     className="mt-auto"

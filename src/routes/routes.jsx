@@ -5,6 +5,7 @@ import Detail from "../pages/Detail";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 
+// rutas definidas para la aplicacion
 export const router = createBrowserRouter([
     {
         path: "/",

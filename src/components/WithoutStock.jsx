@@ -2,6 +2,7 @@ import React from 'react'
 import{Link} from 'react-router'
 import NoStock from '/no-stock.webp'
 
+// Este componente se muestra cuando un producto no existe o ya no está disponible
 const WithoutStock = () => {
   return (
       <div className="d-flex flex-column justify-content-center align-items-center text-center vh-100 p-3">

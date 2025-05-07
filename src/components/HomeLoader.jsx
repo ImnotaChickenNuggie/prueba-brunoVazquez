@@ -1,6 +1,7 @@
 import React from 'react'
 import '../styles/loader.css'
 
+// Este componente se muestra como un loader mientras se cargan los productos
 const HomeLoader = () => {
     return (
         <div className="d-flex flex-column justify-content-center align-items-center vh-100">

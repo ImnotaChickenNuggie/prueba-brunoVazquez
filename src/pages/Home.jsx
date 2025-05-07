@@ -11,7 +11,7 @@ import HomeError from '../components/HomeError';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { status, error } = useSelector((state) => state.products);
+  const { status } = useSelector((state) => state.products);
   const filteredProducts = useSelector(selectFilteredProducts);
 
   useEffect(() => {
