@@ -20,6 +20,7 @@ export const fetchProductById = createAsyncThunk(
 const initialState = {
   items: [],
   selectedProduct: null,
+  selectedCategory: 'all',
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
 };
@@ -30,6 +31,9 @@ const productsSlice = createSlice({
   reducers: {
     clearSelectedProduct: (state) => {
       state.selectedProduct = null;
+    },
+    setSelectedCategory: (state, action) => {
+      state.selectedCategory = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -59,5 +63,15 @@ const productsSlice = createSlice({
   },
 });
 
-export const { clearSelectedProduct } = productsSlice.actions;
+export const { clearSelectedProduct, setSelectedCategory } = productsSlice.actions;
+
+// Selector para obtener productos filtrados
+export const selectFilteredProducts = (state) => {
+  const { items, selectedCategory } = state.products;
+  if (selectedCategory === 'all') {
+    return items;
+  }
+  return items.filter(product => product.category === selectedCategory);
+};
+
 export default productsSlice.reducer; 

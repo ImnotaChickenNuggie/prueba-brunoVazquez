@@ -1,34 +1,49 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchProducts } from '../redux/slices/productsSlice'
+import { fetchProducts, selectFilteredProducts } from '../redux/slices/productsSlice'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ProductCard from '../components/ProductCard'
-
+import CategoryFilter from '../components/CategoryFilter'
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { items, status, error } = useSelector((state) => state.products);
+  const { status, error } = useSelector((state) => state.products);
+  const filteredProducts = useSelector(selectFilteredProducts);
 
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchProducts());
-    }
-  }, [dispatch, status]);
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
   return (
-    <div>
-      <h2>Productos</h2>
+    <Container className="py-4">
+      <h2 className="mb-4">Productos</h2>
       {status === 'loading' && <p>Cargando...</p>}
       {status === 'failed' && <p>Error: {error}</p>}
-      <Row>
-        <Col>
-          {items.map((product) => (
-            <ProductCard key={product.id} id={product.id} image={product.image} title={product.title} category={product.category} price={product.price} />
-          ))}
-        </Col>
+      
+      <CategoryFilter />
+      
+      <Row xs={1} md={2} lg={3} xl={4} className="g-4">
+        {filteredProducts && filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <Col key={product.id}>
+              <ProductCard 
+                id={product.id} 
+                image={product.image} 
+                title={product.title} 
+                category={product.category} 
+                price={product.price} 
+              />
+            </Col>
+          ))
+        ) : (
+          <Col>
+            <p>No hay productos disponibles</p>
+          </Col>
+        )}
       </Row>
-    </div>
+    </Container>
   )
 }
 

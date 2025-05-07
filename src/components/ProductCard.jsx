@@ -1,26 +1,51 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../redux/slices/cartSlice';
+import { Card, Button, Alert } from 'react-bootstrap';
 
 const ProductCard = ({ id, image, title, category, price }) => {
-    return (
-        <Container>
-            <Link to={`/product-detail/${id}`}>
-                <Row>
-                    <Col>
-                        <img src={image} alt='this is a fake product' />
-                    </Col>
-                </Row>
-            </Link>
-            <h2>{title}</h2>
-            <h6>{category}</h6>
-            <h4>$ {price}</h4>
-            <Button>Agregar al carrito</Button>
-        </Container>
-    )
-}
+    const dispatch = useDispatch();
+    const cartItems = useSelector(state => state.cart.items);
+    const currentItem = cartItems.find(item => item.id === id);
+    const quantity = currentItem ? currentItem.quantity : 0;
 
-export default ProductCard
+    const handleAddToCart = () => {
+        if (quantity < 5) {
+            dispatch(addToCart({ id, image, title, category, price }));
+        }
+    };
+
+    return (
+        <Card className="h-100">
+            <Link to={`/product-detail/${id}`} className="text-decoration-none">
+                <Card.Img 
+                    variant="top" 
+                    src={image} 
+                    alt={title}
+                    style={{ height: '200px', objectFit: 'contain', padding: '1rem' }}
+                />
+            </Link>
+            <Card.Body className="d-flex flex-column">
+                <Card.Title className="text-truncate">{title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{category}</Card.Subtitle>
+                <Card.Text className="text-primary fw-bold">${price}</Card.Text>
+                {quantity >= 5 ? (
+                    <Alert variant="warning" className="py-1 mb-2">
+                        Máximo 5 unidades
+                    </Alert>
+                ) : null}
+                <Button 
+                    variant="primary" 
+                    onClick={handleAddToCart}
+                    disabled={quantity >= 5}
+                    className="mt-auto"
+                >
+                    {quantity > 0 ? `Agregar (${quantity}/5)` : 'Agregar al carrito'}
+                </Button>
+            </Card.Body>
+        </Card>
+    );
+};
+
+export default ProductCard;
